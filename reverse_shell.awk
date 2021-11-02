@@ -9,14 +9,19 @@ BEGIN {
 
     while (1) {
         printf "> " |& c
-        res = c |& getline cmd
-        if(!res || cmd ~ /^exit/) close(c)
-        if(cmd) {
-            print "cmd:", cmd
-            while (cmd |& getline result) {
-                print result |& c
-            }
-            close(cmd)
+        has_input = c |& getline cmd
+
+        if(!has_input || cmd ~ /^exit/) {
+            close(c)
+            continue
         }
+
+        if(!cmd) continue
+
+        print "cmd:", cmd
+        while (cmd |& getline result) {
+            print result |& c
+        }
+        close(cmd)
     }
 }
