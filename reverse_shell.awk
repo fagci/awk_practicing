@@ -11,7 +11,7 @@ BEGIN {
         printf "> " |& c
         has_input = c |& getline cmd
 
-        if(!has_input || cmd ~ /^exit/) {
+        if(!has_input || cmd == "exit") {
             close(c)
             continue
         }
