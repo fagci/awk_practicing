@@ -10,25 +10,26 @@ BEGIN {
     host = "irc.rusnet.org.ru"
     port = 6660
 
-    nick = "fagci-awk-logger"
+    nick = "fagci-awk"
 
     conn = "/inet/tcp/0/" host "/" port
 
     send("NICK " nick)
-    send("USER " nick " * " nick " " nick)
+    send("USER " nick " * " nick " :awk readonly bot")
+
+    # send("LIST")
+
     # send("JOIN #neovim")
     # send("JOIN #networking")
     # send("JOIN #bash")
+
     send("JOIN #coding")
     send("JOIN #habrahabr")
     send("JOIN #durdom")
-    # send("LIST")
 
     while(conn |& getline) {
         if($1 == "PING") send("PONG " $2)
-        # if($2 == "001") print $0
         if($2 == "PRIVMSG") print $0
-        # if($2 == "LIST") print $0
         # print $0
     }
 
