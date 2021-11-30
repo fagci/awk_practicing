@@ -4,4 +4,5 @@ jobs:
   doc:
     runs-on: ubuntu-latest
     steps:
-      - run: ls ${{ github.workspace }}/*.awk -1 > ${{ github.workspace }}/README.md
+      - shell: zsh
+        run: ls ./*.awk -1 > ./README.md
