@@ -4,4 +4,4 @@ jobs:
   doc:
     runs-on: alpine-latest
     steps:
-      run: ls *.awk -1 > README.md
+      - run: ls *.awk -1 > README.md
