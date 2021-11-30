@@ -9,7 +9,7 @@ jobs:
         run: |-
           echo "# AWK practicing" > README.md
           echo "" >> README.md
-          ls ./*.awk -1 >> ./README.md
+          ls ./*.awk -1 | sed 's/^/-/' >> ./README.md
       - name: Commit and push if changed
         run: |-
           git diff
