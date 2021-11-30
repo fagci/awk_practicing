@@ -1,0 +1,7 @@
+name: Doc
+on: [push]
+jobs:
+  doc:
+    runs-on: alpine-latest
+    steps:
+      run: ls *.awk -1 > README.md
