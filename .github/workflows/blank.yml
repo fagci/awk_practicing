@@ -8,7 +8,7 @@ jobs:
       - shell: bash
         run: |-
           echo "# AWK practicing" > README.md
-          echo "" > README.md
+          echo "" >> README.md
           ls ./*.awk -1 >> ./README.md
       - name: Commit and push if changed
         run: |-
