@@ -4,5 +4,5 @@ jobs:
   doc:
     runs-on: ubuntu-latest
     steps:
-      - shell: zsh
+      - shell: bash
         run: ls ./*.awk -1 > ./README.md
